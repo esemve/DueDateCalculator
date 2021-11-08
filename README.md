@@ -1,1 +1,2 @@
-# DueDateCalculator
+# Due Date Calculator
+By Bence Kádár

@@ -1,0 +1,22 @@
+{
+    "name": "esemve/duedatecalculator",
+    "description": "Due Date Calculator",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "9.*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "smv",
+            "email": "esemve@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Esemve\\DueDateCalculator\\": "src/",
+            "Esemve\\Tests\\DueDateCalculator\\": "test/"
+        }
+    },
+    "require": {}
+}
