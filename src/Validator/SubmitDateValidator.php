@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Esemve\DueDateCalculator\Validator;
 
-use \DateTimeInterface;
+use DateTimeInterface;
 
 class SubmitDateValidator extends AbstractWorkingTimeValidator
 {
@@ -15,8 +15,7 @@ class SubmitDateValidator extends AbstractWorkingTimeValidator
     public function __construct(
         AbstractWorkingTimeValidator $workingHourValidator,
         AbstractWorkingTimeValidator $workingDayValidator
-    )
-    {
+    ) {
         $this->workingHourValidator = $workingHourValidator;
         $this->workingDayValidator = $workingDayValidator;
     }
@@ -24,9 +23,9 @@ class SubmitDateValidator extends AbstractWorkingTimeValidator
     public function isValid(DateTimeInterface $dateTime): bool
     {
         return
-            $this->isValidDate($dateTime) === true &&
-            $this->workingDayValidator->isValid($dateTime) === true &&
-            $this->workingHourValidator->isValid($dateTime) === true;
+            true === $this->isValidDate($dateTime)
+            && true === $this->workingDayValidator->isValid($dateTime)
+            && true === $this->workingHourValidator->isValid($dateTime);
     }
 
     private function isValidDate(DateTimeInterface $dateTime): bool

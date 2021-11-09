@@ -1,9 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Esemve\Tests\DueDateCalculator\Calculator;
 
+use DateTime;
 use Esemve\DueDateCalculator\Calculator\DueDateCalculator;
 use Esemve\DueDateCalculator\Exception\InvalidSubmitDateException;
 use Esemve\DueDateCalculator\Exception\InvalidTurnAroundHoursException;
@@ -13,16 +14,16 @@ use Esemve\DueDateCalculator\Validator\SubmitDateValidator;
 use Esemve\DueDateCalculator\Validator\WorkingDayValidator;
 use Esemve\DueDateCalculator\Validator\WorkingHourValidator;
 use PHPUnit\Framework\TestCase;
-use \DateTime;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class DueDateCalculatorTest extends TestCase
 {
     /**
      * @dataProvider validDataProvider
      *
-     * @param string $submitDateString
-     * @param int $turnAroundHours
-     * @param string $expectedOutputString
      * @throws InvalidSubmitDateException
      * @throws InvalidTurnAroundHoursException
      */
@@ -58,7 +59,7 @@ class DueDateCalculatorTest extends TestCase
 
     /**
      * @dataProvider invalidSubmitDateDataProvider
-     * @param string $submitDateString
+     *
      * @throws InvalidSubmitDateException
      * @throws InvalidTurnAroundHoursException
      */
@@ -72,7 +73,6 @@ class DueDateCalculatorTest extends TestCase
         $calculator->calculateDueDate($submitDate, 5);
     }
 
-
     public function invalidSubmitDateDataProvider(): array
     {
         return [
@@ -84,13 +84,6 @@ class DueDateCalculatorTest extends TestCase
         ];
     }
 
-    /**
-     * @param string $submitDateString
-     * @param int $turnAroundHours
-     * @param string $expectedOutputString
-     * @throws InvalidSubmitDateException
-     * @throws InvalidTurnAroundHoursException
-     */
     public function testCalculateDueDateByDateTimeImmutable(): void
     {
         $submitDate = new \DateTimeImmutable('2021-11-08 12:00:01');
@@ -102,14 +95,12 @@ class DueDateCalculatorTest extends TestCase
         self::assertEquals($expectedOutput->format('Y-m-d H:i:s'), $output->format('Y-m-d H:i:s'));
     }
 
-
     public function testInvalidTurnAroundHoursForCalculateDueDate(): void
     {
         self::expectException(InvalidTurnAroundHoursException::class);
         $calculator = $this->createCalculator();
         $calculator->calculateDueDate(new DateTime('2021-11-08 13:11:00'), -4);
     }
-
 
     private function createDateTimeFromString(string $dateTime): DateTime
     {
@@ -155,6 +146,4 @@ class DueDateCalculatorTest extends TestCase
     {
         return new WorkingDaysConfiguration();
     }
-
-
 }

@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Esemve\DueDateCalculator\Validator;
 
-use \DateTimeInterface;
+use DateTimeInterface;
 use Esemve\DueDateCalculator\Exception\InvalidSubmitDateException;
 
 abstract class AbstractWorkingTimeValidator
@@ -19,5 +19,4 @@ abstract class AbstractWorkingTimeValidator
             );
         }
     }
-
 }

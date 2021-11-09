@@ -1,15 +1,15 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Esemve\DueDateCalculator\Calculator;
 
-use \DateTime;
-use \DateTimeInterface;
+use DateTime;
+use DateTimeInterface;
+use Esemve\DueDateCalculator\Exception\InvalidSubmitDateException;
 use Esemve\DueDateCalculator\Exception\InvalidTurnAroundHoursException;
 use Esemve\DueDateCalculator\Util\DueDateCalculatorValidatorSet;
 use Esemve\DueDateCalculator\Util\WorkingDaysConfiguration;
-use Esemve\DueDateCalculator\Exception\InvalidSubmitDateException;
 
 class DueDateCalculator
 {
@@ -20,19 +20,18 @@ class DueDateCalculator
     public function __construct(
         WorkingDaysConfiguration $configuration,
         DueDateCalculatorValidatorSet $validatorSet
-    )
-    {
+    ) {
         $this->configuration = $configuration;
         $this->validatorSet = $validatorSet;
     }
 
     /**
-     * Calculate the finish date for a task by submit date and working hours
+     * Calculate the finish date for a task by submit date and working hours.
      *
      * @param DateTimeInterface $submitDate
      * @param int $turnAroundHours
-     * @return DateTime
      *
+     * @return DateTime
      * @throws InvalidSubmitDateException
      * @throws InvalidTurnAroundHoursException
      */
@@ -46,7 +45,7 @@ class DueDateCalculator
 
         $outputDate = new DateTime($submitDate->format('Y-m-d H:i:s'), $submitDate->getTimezone());
 
-        for ($i = 0; $i<$turnAroundHours; $i++) {
+        for ($i = 0; $i < $turnAroundHours; ++$i) {
             $this->calculateOneStep($outputDate);
         }
 
@@ -73,11 +72,11 @@ class DueDateCalculator
     private function resetHour(DateTime $dateTime): void
     {
         $minutes = (int) $dateTime->format('i');
-        $secs =  (int) $dateTime->format('s');
+        $secs = (int) $dateTime->format('s');
 
         $newHour = $this->configuration->getStartTimeHour();
-        if ($minutes === 0 && $secs === 0) {
-            $newHour++;
+        if (0 === $minutes && 0 === $secs) {
+            ++$newHour;
         }
 
         $dateTime->setTime(
@@ -86,5 +85,4 @@ class DueDateCalculator
             $secs
         );
     }
-
 }

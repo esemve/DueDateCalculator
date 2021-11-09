@@ -1,24 +1,23 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Esemve\Tets\DueDateCalculator\Validator;
 
+use DateTime;
 use Esemve\DueDateCalculator\Util\WorkingDaysConfiguration;
 use Esemve\DueDateCalculator\Validator\WorkingHourValidator;
 use PHPUnit\Framework\TestCase;
-use \DateTime;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class WorkingHourValidatorTest extends TestCase
 {
-
     /**
      * @dataProvider dataProvider
      *
-     * @param int $startHour
-     * @param int $endHour
-     * @param string $check
-     * @param bool $expectedOutput
      * @throws \Exception
      */
     public function testWorkingHourValidator(int $startHour, int $endHour, string $check, bool $expectedOutput): void
@@ -60,6 +59,4 @@ class WorkingHourValidatorTest extends TestCase
     {
         return new WorkingHourValidator($workingDaysConfiguration);
     }
-
-
 }

@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Esemve\DueDateCalculator\Validator;
 
-use \DateTimeInterface;
+use DateTimeInterface;
 use Esemve\DueDateCalculator\Util\WorkingDaysConfiguration;
 
 class WorkingHourValidator extends AbstractWorkingTimeValidator
@@ -30,9 +30,8 @@ class WorkingHourValidator extends AbstractWorkingTimeValidator
 
     private function isHourEdgeWithoutMinutesAndSecs(DateTimeInterface $dateTime): bool
     {
-        return (int) $dateTime->format('G') === $this->configuration->getEndTimeHour() &&
-            $dateTime->format('i') === '00' &&
-            $dateTime->format('s') === '00';
+        return (int) $dateTime->format('G') === $this->configuration->getEndTimeHour()
+            && '00' === $dateTime->format('i')
+            && '00' === $dateTime->format('s');
     }
-
 }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Esemve\DueDateCalculator\Util;
 
@@ -18,8 +18,7 @@ class DueDateCalculatorValidatorSet
         AbstractWorkingTimeValidator $workingDayValidator,
         AbstractWorkingTimeValidator $workingHourValidator,
         AbstractWorkingTimeValidator $submitDateValidator
-    )
-    {
+    ) {
         $this->workingDayValidator = $workingDayValidator;
         $this->workingHourValidator = $workingHourValidator;
         $this->submitDateValidator = $submitDateValidator;
@@ -39,5 +38,4 @@ class DueDateCalculatorValidatorSet
     {
         return $this->submitDateValidator;
     }
-
 }

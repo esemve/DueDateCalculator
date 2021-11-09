@@ -1,18 +1,21 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Esemve\Tets\DueDateCalculator\Validator;
 
+use DateTime;
 use Esemve\DueDateCalculator\Exception\InvalidSubmitDateException;
 use Esemve\DueDateCalculator\Validator\AbstractWorkingTimeValidator;
 use Esemve\DueDateCalculator\Validator\SubmitDateValidator;
 use PHPUnit\Framework\TestCase;
-use \DateTime;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class SubmitDateValidatorTest extends TestCase
 {
-
     public function testValidDate(): void
     {
         $date = new DateTime('2021-11-08 12:00:00');
@@ -46,17 +49,17 @@ class SubmitDateValidatorTest extends TestCase
         $firstValidatorReturnFalseValidator = $this->createSubmitDateValidator(
             $this->createAbstractWorkingTimeValidator($date, false),
             $this->createAbstractWorkingTimeValidator($date, true),
-            );
+        );
 
         $secondValidatorReturnFalseValidator = $this->createSubmitDateValidator(
             $this->createAbstractWorkingTimeValidator($date, true),
             $this->createAbstractWorkingTimeValidator($date, false),
-            );
+        );
 
         $allValidatorReturnFalseValidator = $this->createSubmitDateValidator(
             $this->createAbstractWorkingTimeValidator($date, true),
             $this->createAbstractWorkingTimeValidator($date, false),
-            );
+        );
 
         self::assertFalse($firstValidatorReturnFalseValidator->isValid($date));
         self::assertFalse($secondValidatorReturnFalseValidator->isValid($date));
@@ -83,6 +86,4 @@ class SubmitDateValidatorTest extends TestCase
             $workingDayValidator
         );
     }
-
-
 }

@@ -1,23 +1,22 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Esemve\Tets\DueDateCalculator\Validator;
 
+use DateTime;
 use Esemve\DueDateCalculator\Util\WorkingDaysConfiguration;
 use Esemve\DueDateCalculator\Validator\WorkingDayValidator;
 use PHPUnit\Framework\TestCase;
-use \DateTime;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class WorkingDayValidatorTest extends TestCase
 {
-
     /**
      * @dataProvider dataProvider
-     *
-     * @param array $weekendDays
-     * @param DateTime $testDate
-     * @param bool $expectedOutput
      */
     public function testWorkingDayValidator(array $weekendDays, DateTime $testDate, bool $expectedOutput): void
     {
@@ -33,32 +32,32 @@ class WorkingDayValidatorTest extends TestCase
             [
                 [],
                 new DateTime('2021-11-13 10:00:00'),
-                true
+                true,
             ],
             [
                 [],
                 new DateTime('2021-11-14 10:00:00'),
-                true
+                true,
             ],
             [
                 [],
                 new DateTime('2021-11-10 10:00:00'),
-                true
+                true,
             ],
             [
                 [0, 6],
                 new DateTime('2021-11-13 10:00:00'),
-                false
+                false,
             ],
             [
                 [0, 6],
                 new DateTime('2021-11-14 10:00:00'),
-                false
+                false,
             ],
             [
                 [0, 6],
                 new DateTime('2021-11-10 10:00:00'),
-                true
+                true,
             ],
         ];
     }
@@ -75,6 +74,4 @@ class WorkingDayValidatorTest extends TestCase
     {
         return new WorkingDayValidator($workingDaysConfiguration);
     }
-
-
 }
