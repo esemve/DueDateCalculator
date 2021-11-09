@@ -35,7 +35,7 @@ After installation you can use the `Esemve\DueDateCalculator\Calculator\DueDateC
 public function calculateDueDate(DateTimeInterface $submitDate, int $turnAroundHours): DateTime
 ```
 
-####Parameters:
+#### Parameters:
 
 **$submitDate** *(DateTimeInterface)*
 
@@ -45,13 +45,13 @@ Start datetime for the calculation. This can be any DateTimeInterface (DateTime,
 
 How many hours does the task take. This must be a >0 integer.
 
-####Return:
+#### Return:
 
 **DateTime** 
 
 The expected finish date for the task.
 
-####Throws:
+#### Throws:
 **InvalidSubmitDateException**
 
 The submit date (start date) does not contain a valid working day or hour.
